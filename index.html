@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sierra Pest Control — pest control | Fresno, CA</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --clr-bg:          #141416;
+  --clr-surface:     #1e1e22;
+  --clr-surface-2:   #26262c;
+  --clr-surface-3:   #2e2e36;
+  --clr-border:      rgba(255,255,255,0.08);
+  --clr-border-mid:  rgba(255,255,255,0.13);
+
+  --clr-text:        #f0efe9;
+  --clr-text-muted:  #9b9a96;
+  --clr-text-faint:  #5e5d5a;
+
+  --clr-accent:      #4caf82;
+  --clr-accent-dark: #3a9168;
+  --clr-accent-glow: rgba(76,175,130,0.18);
+
+  --clr-white:       #ffffff;
+
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+
+  --shadow-card: 0 2px 16px rgba(0,0,0,0.35);
+  --shadow-lift: 0 8px 32px rgba(0,0,0,0.45);
+
+  --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --transition: 0.22s ease;
+  --max-w: 1160px;
+  --section-pad: clamp(4rem, 8vw, 7rem);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ============================================================
+   TYPOGRAPHY SCALE
+   ============================================================ */
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--clr-text);
+}
+
+h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.7rem, 3.5vw, 2.5rem); }
+h3 { font-size: clamp(1.1rem, 2vw, 1.3rem); }
+
+p {
+  color: var(--clr-text-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+blockquote {
+  font-style: normal;
+}
+
+/* ============================================================
+   LAYOUT HELPERS
+   ============================================================ */
+.section-inner {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin-inline: auto;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  margin-bottom: 1rem;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--clr-text-muted);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.8rem 1.75rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background var(--transition), color var(--transition),
+              border-color var(--transition), transform var(--transition),
+              box-shadow var(--transition);
+  white-space: nowrap;
+  min-height: 44px;
+}
+
+.btn-primary {
+  background: var(--clr-accent);
+  color: #0d1a14;
+  border-color: var(--clr-accent);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--clr-accent-dark);
+  border-color: var(--clr-accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76,175,130,0.35);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--clr-text);
+  border-color: var(--clr-border-mid);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  border-color: var(--clr-accent);
+  color: var(--clr-accent);
+  transform: translateY(-2px);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   PHOTO PLACEHOLDERS
+   ============================================================ */
+.photo-placeholder {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    135deg,
+    var(--clr-surface-2) 0%,
+    var(--clr-surface-3) 50%,
+    var(--clr-surface-2) 100%
+  );
+  border: 1px solid var(--clr-border);
+}
+
+.photo-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(76,175,130,0.04) 0%,
+    transparent 60%,
+    rgba(76,175,130,0.03) 100%
+  );
+  pointer-events: none;
+}
+
+.photo-placeholder span {
+  position: relative;
+  z-index: 1;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-text-faint);
+  text-align: center;
+  padding: 1rem;
+  line-height: 1.5;
+}
+
+.hero-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-xl);
+}
+
+.service-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.gallery-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+}
+
+.about-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-xl);
+}
+
+/* ============================================================
+   SITE HEADER
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(20, 20, 22, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+  height: 68px;
+  gap: 1.5rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.brand-icon {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.brand-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--clr-text);
+  white-space: nowrap;
+}
+
+.main-nav {
+  display: none;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--clr-text);
+  background: var(--clr-surface-2);
+}
+
+.nav-cta {
+  background: var(--clr-accent);
+  color: #0d1a14 !important;
+  font-weight: 600;
+  padding: 0.45rem 1.1rem;
+  margin-left: 0.5rem;
+}
+
+.nav-cta:hover,
+.nav-cta:focus-visible {
+  background: var(--clr-accent-dark) !important;
+  color: #0d1a14 !important;
+}
+
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  background: var(--clr-surface-2);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--clr-text);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding: clamp(3.5rem, 8vw, 6rem) 0 0;
+  background: var(--clr-bg);
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+}
+
+.hero-headline {
+  color: var(--clr-text);
+}
+
+.hero-subhead {
+  font-size: 1.05rem;
+  color: var(--clr-text-muted);
+  max-width: 560px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.hero-visual {
+  width: 100%;
+}
+
+.hero-trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--clr-border);
+  background: var(--clr-surface);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: 1 1 200px;
+  padding: 1.25rem clamp(1rem, 3vw, 2rem);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  border-right: 1px solid var(--clr-border);
+}
+
+.trust-item:last-child {
+  border-right: none;
+}
+
+.trust-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+.services-section {
+  padding: var(--section-pad) 0;
+  background: var(--clr-bg);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition),
+              border-color var(--transition);
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+  border-color: var(--clr-border-mid);
+}
+
+.service-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.service-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.service-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--clr-text);
+}
+
+.service-desc {
+  font-size: 0.92rem;
+  color: var(--clr-text-muted);
+  line-height: 1.7;
+}
+
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--clr-accent);
+  margin-top: 0.25rem;
+  transition: gap var(--transition), color var(--transition);
+}
+
+.service-link:hover,
+.service-link:focus-visible {
+  color: var(--clr-accent-dark);
+  gap: 0.5rem;
+}
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.gallery-section {
+  padding: var(--section-pad) 0;
+  background: var(--clr-surface);
+  border-top: 1px solid var(--clr-border);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.gallery-tile {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.gallery-tile:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-lift);
+}
+
+.gallery-tile .photo-placeholder {
+  border-radius: var(--radius-md);
+}
+
+/* ============================================================
+   REVIEWS
+   ============================================================ */
+.reviews-section {
+  padding: var(--section-pad) 0;
+  background: var(--clr-bg);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.review-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.review-card:hover {
+  border-color: var(--clr-border-mid);
+  box-shadow: var(--shadow-card);
+}
+
+.review-stars {
+  font-size: 1rem;
+  color: var(--clr-accent);
+  letter-spacing: 0.1em;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+  line-height: 1.75;
+  flex: 1;
+}
+
+.review-text::before,
+.review-text::after {
+  content: none;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--clr-border);
+}
+
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--clr-accent-dark), var(--clr-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #0d1a14;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.review-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.review-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--clr-text);
+}
+
+.review-location {
+  font-size: 0.78rem;
+  color: var(--clr-text-faint);
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-section {
+  padding: var(--section-pad) 0;
+  background: var(--clr-surface);
+  border-top: 1px solid var(--clr-border);
+}
+
+.about-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.about-visual {
+  width: 100%;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.about-text .section-label {
+  text-align: left;
+}
+
+.about-text .section-title {
+  text-align: left;
+}
+
+.about-text p {
+  font-size: 0.98rem;
+}
+
+.trust-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.trust-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  background: var(--clr-surface-2);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition);
+}
+
+.trust-badge:hover {
+  border-color: var(--clr-accent-glow);
+}
+
+.badge-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.badge-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.badge-text strong {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--clr-text);
+}
+
+.badge-text span {
+  font-size: 0.82rem;
+  color: var(--clr-text-muted);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-section {
+  padding: var(--section-pad) 0;
+  background: var(--clr-bg);
+  border-top: 1px solid var(--clr-border);
+}
+
+.contact-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-info .section-label,
+.contact-info .section-title {
+  text-align: left;
+}
+
+.contact-desc {
+  font-size: 1rem;
+  max-width: 480px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.contact-detail-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.contact-detail-item strong {
+  display: block;
+  font-weight: 600;
+  color: var(--clr-text);
+  font-size: 0.88rem;
+  margin-bottom: 0.15rem;
+}
+
+.contact-detail-item span {
+  color: var(--clr-text-muted);
+  font-size: 0.88rem;
+}
+
+/* ============================================================
+   FORM — PREMIUM TREATMENT
+   ============================================================ */
+.contact-form {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+label,
+.form-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clr-text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input,
+.form-select,
+.form-textarea,
+input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--clr-text);
+  background: var(--clr-surface-2);
+  border: 1.5px solid var(--clr-border-mid);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  min-height: 44px;
+  line-height: 1.5;
+  transition: border-color var(--transition), box-shadow var(--transition),
+              background var(--transition);
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: var(--clr-text-faint);
+  font-weight: 400;
+}
+
+.form-input:hover,
+.form-select:hover,
+.form-textarea:hover,
+input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):hover,
+select:hover,
+textarea:hover {
+  border-color: rgba(255,255,255,0.2);
+  background: var(--clr-surface-3);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus,
+input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):focus,
+select:focus,
+textarea:focus {
+  border-color: var(--clr-accent);
+  background: var(--clr-surface-3);
+  box-shadow: 0 0 0 3px var(--clr-accent-glow);
+  outline: none;
+}
+
+/* Select — custom arrow */
+.form-select,
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239b9a96' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.form-select option,
+select option {
+  background: var(--clr-surface-2);
+  color: var(--clr-text);
+}
+
+/* Textarea */
+.form-textarea,
+textarea {
+  min-height: 130px;
+  resize: vertical;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   FOOTER (generic safety net)
+   ============================================================ */
+footer,
+.site-footer {
+  background: var(--clr-surface);
+  border-top: 1px solid var(--clr-border);
+  padding: clamp(2.5rem, 5vw, 4rem) 0 2rem;
+  color: var(--clr-text-muted);
+  font-size: 0.88rem;
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET  ≥ 640px
+   ============================================================ */
+@media (min-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trust-item {
+    flex: 1 1 160px;
+  }
+
+  .hero-trust-strip {
+    flex-wrap: nowrap;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — DESKTOP  ≥ 900px
+   ============================================================ */
+@media (min-width: 900px) {
+  .main-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .hero-content {
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .hero-text {
+    flex: 1 1 50%;
+  }
+
+  .hero-visual {
+    flex: 1 1 46%;
+  }
+
+  .hero-placeholder {
+    aspect-ratio: 4 / 3;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-inner {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 5rem;
+  }
+
+  .about-visual {
+    flex: 0 0 340px;
+  }
+
+  .about-text {
+    flex: 1;
+  }
+
+  .contact-inner {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 4rem;
+  }
+
+  .contact-info {
+    flex: 0 0 380px;
+  }
+
+  .contact-form {
+    flex: 1;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — WIDE  ≥ 1100px
+   ============================================================ */
+@media (min-width: 1100px) {
+  .reviews-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .about-visual {
+    flex: 0 0 400px;
+  }
+}
+
+/* ============================================================
+   MOTION — respect prefers-reduced-motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY — focus-visible global
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 3px;
+}
+
+:focus:not(:focus
+</style>
+</head>
+<body>
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-icon">🛡️</span>
+      <span class="brand-name">Sierra Pest Control</span>
+    </div>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#reviews" class="nav-link">Reviews</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link nav-cta">Get a Quote</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="hero-eyebrow">Fresno's Trusted Pest Professionals</span>
+        <h1 class="hero-headline">Protect Your Home.<br>Reclaim Your Space.</h1>
+        <p class="hero-subhead">Sierra Pest Control delivers safe, effective residential and commercial pest elimination across Fresno, CA — from termites and rodents to general household pests. Licensed, insured, and committed to results.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+          <a href="#services" class="btn btn-secondary">See Our Services</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="photo-placeholder hero-placeholder"><span>Sierra Pest Control — hero photo here</span></div>
+      </div>
+    </div>
+    <div class="hero-trust-strip">
+      <div class="trust-item">
+        <span class="trust-icon">✅</span>
+        <span>Licensed &amp; Insured</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">🌿</span>
+        <span>Eco-Conscious Treatments</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">🏠</span>
+        <span>Residential &amp; Commercial</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">📍</span>
+        <span>Serving Fresno, CA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">What We Do</span>
+        <h2 class="section-title">Comprehensive Pest Control Services</h2>
+        <p class="section-desc">From a single ant trail to a full termite colony, Sierra Pest Control has the training, tools, and treatments to handle it — safely and completely.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="photo-placeholder service-placeholder"><span>General pest control — client photo here</span></div>
+          <div class="service-card-body">
+            <div class="service-icon">🐜</div>
+            <h3 class="service-title">General Pest Control</h3>
+            <p class="service-desc">Ants, cockroaches, spiders, silverfish, and more. We identify entry points, treat the source, and set up a barrier to keep pests from coming back.</p>
+            <a href="#contact" class="service-link">Get a Quote →</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="photo-placeholder service-placeholder"><span>Termite control — client photo here</span></div>
+          <div class="service-card-body">
+            <div class="service-icon">🪵</div>
+            <h3 class="service-title">Termite Treatment</h3>
+            <p class="service-desc">Subterranean and drywood termite inspections and elimination. We use proven treatment methods to stop active colonies and protect your structure long-term.</p>
+            <a href="#contact" class="service-link">Get a Quote →</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="photo-placeholder service-placeholder"><span>Rodent control — client photo here</span></div>
+          <div class="service-card-body">
+            <div class="service-icon">🐀</div>
+            <h3 class="service-title">Rodent Control</h3>
+            <p class="service-desc">Mice and rat infestations require fast action. We locate nesting areas, seal entry points, and remove rodents — then follow up to confirm the problem is gone.</p>
+            <a href="#contact" class="service-link">Get a Quote →</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="photo-placeholder service-placeholder"><span>Commercial pest control — client photo here</span></div>
+          <div class="service-card-body">
+            <div class="service-icon">🏢</div>
+            <h3 class="service-title">Commercial Pest Control</h3>
+            <p class="service-desc">Restaurants, warehouses, offices, and retail spaces. We work around your schedule to keep your business compliant, pest-free, and professional.</p>
+            <a href="#contact" class="service-link">Get a Quote →</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="photo-placeholder service-placeholder"><span>Bed bug treatment — client photo here</span></div>
+          <div class="service-card-body">
+            <div class="service-icon">🛏️</div>
+            <h3 class="service-title">Bed Bug Treatment</h3>
+            <p class="service-desc">Bed bugs spread fast and are notoriously hard to eliminate without professional help. Our targeted treatments reach every harborage point for complete eradication.</p>
+            <a href="#contact" class="service-link">Get a Quote →</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="photo-placeholder service-placeholder"><span>Wasp and stinging insect removal — client photo here</span></div>
+          <div class="service-card-body">
+            <div class="service-icon">🐝</div>
+            <h3 class="service-title">Wasp &amp; Stinging Insects</h3>
+            <p class="service-desc">Wasps, yellow jackets, and hornets pose a real safety risk. We safely remove nests and treat the area so they don't return to the same spot next season.</p>
+            <a href="#contact" class="service-link">Get a Quote →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Our Work</span>
+        <h2 class="section-title">Results You Can See</h2>
+        <p class="section-desc">Every job is documented before and after. Here's a look at the kind of work Sierra Pest Control delivers across Fresno.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-tile">
+          <div class="photo-placeholder gallery-placeholder"><span>Termite damage treatment — client photo here</span></div>
+        </div>
+        <div class="gallery-tile">
+          <div class="photo-placeholder gallery-placeholder"><span>Rodent exclusion work — client photo here</span></div>
+        </div>
+        <div class="gallery-tile">
+          <div class="photo-placeholder gallery-placeholder"><span>Commercial treatment — client photo here</span></div>
+        </div>
+        <div class="gallery-tile">
+          <div class="photo-placeholder gallery-placeholder"><span>Ant colony elimination — client photo here</span></div>
+        </div>
+        <div class="gallery-tile">
+          <div class="photo-placeholder gallery-placeholder"><span>Wasp nest removal — client photo here</span></div>
+        </div>
+        <div class="gallery-tile">
+          <div class="photo-placeholder gallery-placeholder"><span>Bed bug treatment — client photo here</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews-section" id="reviews">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">What Clients Say</span>
+        <h2 class="section-title">Trusted by Fresno Homeowners &amp; Businesses</h2>
+      </div>
+      <div class="reviews-grid">
+
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="review-text">"We had a serious termite problem in our crawl space that two other companies missed. Sierra came out, found the source, and treated it completely. Six months later — nothing. Couldn't be happier."</blockquote>
+          <div class="review-author">
+            <div class="review-avatar" aria-hidden="true">MR</div>
+            <div class="review-meta">
+              <span class="review-name">Marcus R.</span>
+              <span class="review-location">Fresno, CA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="review-text">"I manage a small restaurant and pest control is non-negotiable. Sierra works around our hours, documents everything for our health inspections, and has kept us clean for over a year. Professional all the way."</blockquote>
+          <div class="review-author">
+            <div class="review-avatar" aria-hidden="true">DL</div>
+            <div class="review-meta">
+              <span class="review-name">Diana L.</span>
+              <span class="review-location">Fresno, CA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="review-text">"Mice in the walls — every homeowner's nightmare. Sierra sealed every entry point I didn't even know existed, set traps, and followed up twice. The problem was gone within two weeks. Highly recommend."</blockquote>
+          <div class="review-author">
+            <div class="review-avatar" aria-hidden="true">TK</div>
+            <div class="review-meta">
+              <span class="review-name">Thomas K.</span>
+              <span class="review-location">Clovis, CA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="review-text">"Really appreciated that they explained every product they used and why. I have young kids so I was nervous, but they walked me through the eco-friendly options and made sure we were comfortable before they started."</blockquote>
+          <div class="review-author">
+            <div class="review-avatar" aria-hidden="true">AP</div>
+            <div class="review-meta">
+              <span class="review-name">Angela P.</span>
+              <span class="review-location">Fresno, CA</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / TRUST BAND -->
+  <section class="about-section" id="about">
+    <div class="section-inner about-inner">
+      <div class="about-visual">
+        <div class="photo-placeholder about-placeholder"><span>Sierra Pest Control team — photo here</span></div>
+      </div>
+      <div class="about-text">
+        <span class="section-label">About Sierra Pest Control</span>
+        <h2 class="section-title">Local Expertise. Honest Work. Real Results.</h2>
+        <p>Sierra Pest Control was built on a simple belief: pest control should be effective, transparent, and safe for your family and the environment. We're not a national franchise — we're a local Fresno operation that takes pride in every job we complete.</p>
+        <p>Our technicians are trained, licensed by the state of California, and fully insured. We stay current on the latest treatment methods and use eco-conscious products wherever possible without sacrificing effectiveness.</p>
+        <div class="trust-badges">
+          <div class="trust-badge">
+            <span class="badge-icon">🛡️</span>
+            <div class="badge-text">
+              <strong>Licensed &amp; Insured</strong>
+              <span>California-licensed pest control operator</span>
+            </div>
+          </div>
+          <div class="trust-badge">
+            <span class="badge-icon">🌿</span>
+            <div class="badge-text">
+              <strong>Eco-Conscious Approach</strong>
+              <span>Low-impact treatments available for families and pets</span>
+            </div>
+          </div>
+          <div class="trust-badge">
+            <span class="badge-icon">📍</span>
+            <div class="badge-text">
+              <strong>Service Area</strong>
+              <span>Fresno, Clovis, Madera, and surrounding Central Valley communities</span>
+            </div>
+          </div>
+          <div class="trust-badge">
+            <span class="badge-icon">🔁</span>
+            <div class="badge-text">
+              <strong>Follow-Up Guarantee</strong>
+              <span>We return until the problem is fully resolved</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="section-inner contact-inner">
+      <div class="contact-info">
+        <span class="section-label">Contact Us</span>
+        <h2 class="section-title">Get Your Free Quote</h2>
+        <p class="contact-desc">Tell us what you're dealing with and we'll get back to you promptly with a straightforward assessment and quote — no pressure, no runaround.</p>
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <span class="contact-detail-icon">📍</span>
+            <div>
+              <strong>Service Area</strong>
+              <span>Fresno, CA and surrounding Central Valley</span>
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-icon">⏱️</span>
+            <div>
+              <strong>Response Time</strong>
+              <span>We respond to all quote requests within one business day</span>
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-icon">🗓️</span>
+            <div>
+              <strong>Availability</strong>
+              <span>Monday – Saturday, flexible scheduling available</span>
+            </div>
+          </div>
+        </div>
+        <a href="#contact-form" class="btn btn-primary contact-cta">Request a Quote Now</a>
+      </div>
+
+      <div class="contact-form-wrap" id="contact-form">
+        <form class="quote-form" name="quote-request" method="POST" action="#" novalidate>
+          <h3 class="form-title">Request a Free Quote</h3>
+
+          <div class="form-field">
+            <label for="full-name">Full Name <span class="required" aria-hidden="true">*</span></label>
+            <input class="form-input" type="text" id="full-name" name="full_name" placeholder="Jane Smith" required autocomplete="name" />
+          </div>
+
+          <div class="form-field">
+            <label for="phone">Phone Number</label>
+            <input class="form-input" type="tel" id="phone" name="phone" placeholder="(559) 000-0000" autocomplete="tel" />
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="jane@example.com" required autocomplete="email" />
+          </div>
+
+          <div class="form-field">
+            <label for="service-needed">Service Needed <span class="required" aria-hidden="true">*</span></label>
+            <select class="form-select" id="service-needed" name="service_needed" required>
+              <option value="" disabled selected>Select a service…</option>
+              <option value="general-pest-control">General Pest Control</option>
+              <option value="termite-treatment">Termite Treatment</option>
+              <option value="rodent-control">Rodent Control</option>
+              <option value="commercial-pest-control">Commercial Pest Control</option>
+              <option value="bed-bug-treatment">Bed Bug Treatment</option>
+              <option value="wasp-stinging-insects">Wasp &amp; Stinging Insects</option>
+              <option value="not-sure">Not Sure — Need Inspection</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="message">Tell Us More</label>
+            <textarea class="form-textarea" id="message" name="message" rows="4" placeholder="Describe what you're seeing — type of pest, where in the property, how long it's been an issue, etc."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-submit">Send My Quote Request</button>
+          <p class="form-note">We'll respond within one business day. Your information is never shared or sold.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-icon">🛡️</span>
+      <span class="brand-name">Sierra Pest Control</span>
+      <p class="footer-tagline">Protecting Fresno homes and businesses — one treatment at a time.</p>
+    </div>
+    <div class="footer-nav">
+      <h4 class="footer-nav-title">Quick Links</h4>
+      <ul class="footer-nav-list">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Get a Quote</a></li>
+      </ul>
+    </div>
+    <div class="footer-services">
+      <h4 class="footer-nav-title">Services</h4>
+      <ul class="footer-nav-list">
+        <li>General Pest Control</li>
+        <li>Termite Treatment</li>
+        <li>Rodent Control</li>
+        <li>Commercial Pest Control</li>
+        <li>Bed Bug Treatment</li>
+        <li>Wasp &amp; Stinging Insects</li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4 class="footer-nav-title">Service Area</h4>
+      <p>Fresno, CA<br>Clovis, CA<br>Madera, CA<br>Central Valley communities</p>
+      <a href="#contact" class="btn btn-primary footer-cta">Get a Free Quote</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-legal">&copy; 2025 Sierra Pest Control. All rights reserved. Licensed Pest Control Operator — State of California. Website by <a href="https://blacklinesystems.co" target="_blank" rel="noopener">Blackline Systems</a>.</p>
+    <a href="#top" class="back-to-top" aria-label="Back to top">↑ Top</a>
+  </div>
+</footer>
+</body>
+</html>
